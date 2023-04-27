@@ -4,9 +4,6 @@ import { connect } from "./src/db";
 
 const PORT = process.env.PORT;
 
-require("dotenv").config();
-
-connect();
 app.listen(PORT, () => {
   console.log("");
   setTimeout(function () {
@@ -19,4 +16,5 @@ app.listen(PORT, () => {
       `${PORT}`
     );
   }, 1000);
+  connect();
 });
