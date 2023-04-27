@@ -1,0 +1,16 @@
+#navbar {
+  height: 100%;
+  width: 256px;
+  background-color: white;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .title {
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 48px;
+      color: #22242c;
+    }
+  }
+}
