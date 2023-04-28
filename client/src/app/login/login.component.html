@@ -9,12 +9,18 @@
         <div class="containerForm">
           <form action="">
             <label for="tipDoc">Tipo de documento</label>
-            <input type="tipDoc" placeholder="DNI" />
+            <select type="tipDoc" placeholder="DNI">
+              <option value="DNI">DNI</option>
+              <option value="CUIT">CUIT</option>
+              <option value="CUIL">CUIL</option>
+            </select>
             <label for="numDoc">Número de documento</label>
             <input type="numDoc" />
             <label for="password" placeholder="">Clave</label>
             <input type="password" placeholder="" />
-            <div class="buttonSubmit" routerLink="home">Ingresar</div>
+            <div class="buttonSubmit" type="submit" routerLink="home">
+              Ingresar
+            </div>
           </form>
           <div class="container_secondary">
             <div class="container_keyboard">

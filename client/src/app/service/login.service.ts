@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { environmentApi } from '../environments/environment.api';
 
 @Injectable()
-export class elementService {
+export class loginService {
   constructor(private http: HttpClient) {}
 
-  getMenu(): Observable<any> {
-    return this.http.get<any>(environmentApi.urlApi + 'menu');
+  login(): Observable<any> {
+    return this.http.get<any>(environmentApi.urlApi + 'login');
   }
 }
