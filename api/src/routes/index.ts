@@ -1,11 +1,13 @@
-import express, { Response, Request } from "express";
+import express, { Response, Request, response } from "express";
 import { menuModel } from "../models/menu";
+import { transactionModel } from "../models/transactions";
 
 const getMenu = async (req: Request, res: Response) => {
   try {
-    const response = await menuModel.find({}).maxTimeMS(60000);
+    await menuModel.create({});
+    const response = await menuModel.find();
     return res.status(200).json({
-      "Todo ok": "Ajam",
+      response,
     });
   } catch (error) {
     console.error(error);
@@ -28,8 +30,9 @@ const getCard = async (req: Request, res: Response) => {
 };
 const getTransaction = async (req: Request, res: Response) => {
   try {
+    const response = transactionModel.find();
     return res.status(200).json({
-      "Todo ok": "Ajam",
+      response,
     });
   } catch (error) {
     console.error(error);

@@ -1,22 +1,33 @@
 import mongoose from "mongoose";
-const userColecctions = "user";
+const transactionColecctions = "Transactions";
 
-const userSchema = new mongoose.Schema({
+const transactionSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    require: true,
+  },
   name: {
     type: String,
     require: true,
   },
-  password: {
+  import: {
     type: String,
     require: true,
   },
-  dni: {
-    type: Number,
+  date: {
+    type: String,
     require: true,
   },
-  mail: {
+  status: {
+    type: String,
+    require: true,
+  },
+  origin: {
     type: String,
     require: true,
   },
 });
-export const userModel = mongoose.model(userColecctions, userSchema);
+export const transactionModel = mongoose.model(
+  transactionColecctions,
+  transactionSchema
+);

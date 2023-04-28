@@ -1,28 +1,44 @@
-const { MongoClient } = require("mongodb");
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import { user, transaction, menu } from "./data/data.json";
+import { userModel } from "./models/user";
+import { transactionModel } from "./models/transactions";
+import { menuModel } from "./models/menu";
+const { PASSWORD, STATE, DBNAME } = process.env;
 
-const { PASSWORD, USERNAME } = process.env;
+const uri =
+  STATE == "dev"
+    ? `mongodb://localhost:27017/${DBNAME}`
+    : `mongodb+srv://brunodavid9914:${PASSWORD}@cluster0.zatdwyn.mongodb.net/?retryWrites=true&w=majority`;
 
-const uri = `mongodb+srv://bruno:${PASSWORD}@cluster0.bgvhzmc.mongodb.net/?retryWrites=true&w=majority`;
-
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-async function connect() {
+const connect = async () => {
   try {
-    await client.connect();
-    console.log("");
-    console.log("\x1b[35m%s\x1b[0m", "Connected to MongoDB!");
-    await client.db("admin").command({ ping: 1 });
+    await mongoose.connect(uri);
+    console.log("\n\n" + "\x1b[35m%s\x1b[0m", "Connected to MongoDB!");
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const db = mongoose.connection;
+
+db.once("open", async () => {
+  try {
+    // Borrar todos los datos de la base de datos existente
+    await menuModel.deleteMany({});
+    await transactionModel.deleteMany({});
+    await userModel.deleteMany({});
+
+    // Cargar los nuevos datos
+    await menuModel.insertMany(menu);
+    await transactionModel.insertMany(transaction);
+    await userModel.insertMany(user);
     console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
+      "\n\n" + "\x1b[33m%s\x1b[0m",
+      "Los datos se han cargado correctamente"
     );
   } catch (err) {
     console.error(err);
   }
-}
+});
 
 export { connect };

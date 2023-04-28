@@ -11,4 +11,5 @@ const menuSchema = new Schema({
     require: true,
   },
 });
+
 export const menuModel = mongoose.model(menuColecctions, menuSchema);
