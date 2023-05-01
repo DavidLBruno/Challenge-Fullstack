@@ -7,20 +7,35 @@
       <div class="container_login">
         <h1 class="title">LOGO</h1>
         <div class="containerForm">
-          <form action="">
+          <form [formGroup]="formLogin" (ngSubmit)="save($event)">
             <label for="tipDoc">Tipo de documento</label>
-            <select type="tipDoc" placeholder="DNI">
+            <select formControlName="tipDoc" type="tipDoc">
               <option value="DNI">DNI</option>
               <option value="CUIT">CUIT</option>
               <option value="CUIL">CUIL</option>
             </select>
             <label for="numDoc">Número de documento</label>
-            <input type="numDoc" />
-            <label for="password" placeholder="">Clave</label>
-            <input type="password" placeholder="" />
-            <div class="buttonSubmit" type="submit" routerLink="home">
+            <input
+              formControlName="numDoc"
+              id="numDoc"
+              placeholder="Numero"
+              type="number"
+              required
+            />
+            <label for="password">Clave</label>
+            <input
+              formControlName="password"
+              type="password"
+              placeholder="Contraseña"
+              required
+            />
+            <button
+              class="buttonSubmit"
+              type="submit"
+              [routerLink]="logged ? '/home' : null"
+            >
               Ingresar
-            </div>
+            </button>
           </form>
           <div class="container_secondary">
             <div class="container_keyboard">

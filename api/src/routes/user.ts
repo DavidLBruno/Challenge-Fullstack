@@ -8,10 +8,13 @@ const loginUser = async (req: Request, res: Response) => {
     console.log({ response, type, document, password });
     return res.status(200).json({
       response,
+      logged: true,
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ mensaje: "Error to login User" });
+    return res
+      .status(500)
+      .json({ mensaje: "Error to login User", logged: false });
   }
 };
 

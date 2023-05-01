@@ -7,7 +7,7 @@ import { environmentApi } from '../environments/environment.api';
 export class loginService {
   constructor(private http: HttpClient) {}
 
-  login(): Observable<any> {
-    return this.http.get<any>(environmentApi.urlApi + 'login');
+  login(event: Object): Observable<any> {
+    return this.http.post<any>(environmentApi.urlApi + 'login', event);
   }
 }
