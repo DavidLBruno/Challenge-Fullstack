@@ -1,5 +1,11 @@
 <nav id="navbar">
   <div class="container">
-    <h1 class="title">LOGO{{ menu }}</h1>
+    <h1 class="title">LOGO</h1>
+
+    <ul>
+      <li *ngFor="let option of menu">
+        <a href="">{{ option.name }}</a>
+      </li>
+    </ul>
   </div>
 </nav>

@@ -4,7 +4,6 @@ import { transactionModel } from "../models/transactions";
 
 const getMenu = async (req: Request, res: Response) => {
   try {
-    await menuModel.create({});
     const response = await menuModel.find();
     return res.status(200).json({
       response,
