@@ -30,8 +30,6 @@ export class LoginComponent {
     const value = this.formLogin.value;
     this.loginService
       .login(value)
-      .subscribe((arg) => ((this.logged = arg), console.log(arg)));
-
-    console.log({ value, logged: this.logged });
+      .subscribe((arg) => ((this.logged = arg), console.log(this.logged)));
   }
 }

@@ -6,10 +6,17 @@ const loginUser = async (req: Request, res: Response) => {
     const { type, document, password } = req.headers;
     const response = await userModel.find({ type, document, password });
     console.log({ response, type, document, password });
-    return res.status(200).json({
-      response,
-      logged: true,
-    });
+    if (response.length) {
+      return res.status(200).json({
+        response,
+        logged: true,
+      });
+    } else {
+      return res.status(400).json({
+        mensaje: "Password or Document incorrect",
+        logged: false,
+      });
+    }
   } catch (error) {
     console.error(error);
     return res
