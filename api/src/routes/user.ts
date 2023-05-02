@@ -5,7 +5,7 @@ const loginUser = async (req: Request, res: Response) => {
   try {
     const { type, document, password } = req.headers;
     const response = await userModel.find({ type, document, password });
-    console.log({ response, type, document, password });
+    console.log({ type, document, password });
     if (response.length) {
       return res.status(200).json({
         response,

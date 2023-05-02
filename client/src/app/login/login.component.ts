@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { loginService } from '../service/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent {
   logged: boolean = false;
   formLogin!: FormGroup;
 
-  constructor(private loginService: loginService) {
+  constructor(private loginService: loginService, private router: Router) {
     this.buildForm();
   }
 
@@ -31,5 +32,6 @@ export class LoginComponent {
     this.loginService
       .login(value)
       .subscribe((arg) => ((this.logged = arg), console.log(this.logged)));
+    this.logged ? this.router.navigate(['/detalle']) : null;
   }
 }

@@ -1,12 +1,18 @@
 import express from "express";
 import morgan from "morgan";
 import router from "./controllers";
-
+import cors from "cors";
 const server = express();
+
+const corsOptions = {
+  origin: "http://localhost:4200",
+  optionsSuccessStatus: 200,
+};
 
 //Middlewares
 server.use(morgan("dev"));
 server.use(express.json());
+server.use(cors(corsOptions)); // Agrega el middleware cors a todas las rutas
 server.use(express.urlencoded({ extended: false }));
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
