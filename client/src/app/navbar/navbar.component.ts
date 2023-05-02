@@ -16,8 +16,10 @@ export class NavbarComponent {
 
   ngOnInit() {
     this.servicio.getMenu().subscribe((res) => {
-      console.log(res);
       this.menu = res.response;
+      res.forEach((element: any, index: number) => {
+        $(`.image${index}`)[0].innerHTML = element.icon;
+      });
     });
   }
 }

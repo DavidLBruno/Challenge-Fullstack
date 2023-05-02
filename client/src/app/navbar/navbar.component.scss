@@ -9,8 +9,22 @@
     justify-content: center;
 
     ul {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
       li {
         list-style: none;
+        a {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 19px;
+          color: #8e8ea1;
+        }
+
+        a:hover {
+          font-weight: 600;
+          color: #22242c;
+        }
       }
     }
 

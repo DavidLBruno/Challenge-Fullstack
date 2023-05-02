@@ -29,9 +29,9 @@ export class LoginComponent {
   save(event: Event) {
     event.preventDefault();
     const value = this.formLogin.value;
-    this.loginService
-      .login(value)
-      .subscribe((arg) => ((this.logged = arg), console.log(this.logged)));
-    this.logged ? this.router.navigate(['/detalle']) : null;
+    this.loginService.login(value).subscribe((arg) => {
+      this.logged = arg.logged;
+      this.router.navigate(['/home']);
+    });
   }
 }

@@ -3,7 +3,8 @@
     <h1 class="title">LOGO</h1>
 
     <ul>
-      <li *ngFor="let option of menu">
+      <li *ngFor="let option of menu; let i = index">
+        <div [ngClass]="'image' + i"></div>
         <a>{{ option.name }}</a>
       </li>
     </ul>
