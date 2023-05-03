@@ -4,7 +4,7 @@
 
     <ul>
       <li *ngFor="let option of menu; let i = index">
-        <div [ngClass]="'image' + i"></div>
+        <div [innerHTML]="option.icon"></div>
         <a>{{ option.name }}</a>
       </li>
     </ul>

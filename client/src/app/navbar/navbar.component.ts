@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { elementService } from '../service/elements.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
 interface Option {
   name: string;
   icon: string;
@@ -10,16 +12,24 @@ interface Option {
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  menu: Array<Option> = [];
+  menu: Array<any> = [];
 
-  constructor(private servicio: elementService) {}
+  constructor(
+    private servicio: elementService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
+    console.log('FDsaf');
     this.servicio.getMenu().subscribe((res) => {
-      this.menu = res.response;
-      res.forEach((element: any, index: number) => {
-        $(`.image${index}`)[0].innerHTML = element.icon;
+      console.log('wenas');
+      res.response.forEach((element: any, index: number) => {
+        this.menu.push({
+          icon: this.sanitizer.bypassSecurityTrustHtml(element.icon),
+          name: element.name,
+        });
       });
+      console.log(this.menu);
     });
   }
 }
